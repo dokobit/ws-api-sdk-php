@@ -18,7 +18,7 @@ class Phone extends Regex
     /**
      * @var string
      */
-    public $message = 'Phone number format is not valid';
+    public string $message = 'Phone number format is not valid';
 
     /**
      * @param mixed $options
