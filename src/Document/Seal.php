@@ -70,16 +70,12 @@ class Seal implements QueryInterface
         return new Assert\Collection([
             'type'  => new Assert\Required([
                 new Assert\NotBlank(),
-                new Assert\Choice([
-                    'choices' => DocumentTypeProvider::getAllDocumentTypes()
-                ])
+                new Assert\Choice(choices: DocumentTypeProvider::getAllDocumentTypes())
             ]),
             'timestamp' => new Assert\Required([
-                new Assert\Type([
-                    'type' => 'bool'
-                ])
+                new Assert\Type(type: 'bool')
             ]),
-            $this->type => new Assert\Collection(['fields' => [], 'allowExtraFields' => true]),
+            $this->type => new Assert\Collection(fields: [], allowExtraFields: true),
         ]);
     }
 

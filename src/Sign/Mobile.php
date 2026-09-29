@@ -105,9 +105,7 @@ class Mobile implements QueryInterface
         return new Assert\Collection([
             'type' => new Assert\Required([
                 new Assert\NotBlank(),
-                new Assert\Choice([
-                    'choices' => DocumentTypeProvider::getAllDocumentTypes()
-                ]),
+                new Assert\Choice(choices: DocumentTypeProvider::getAllDocumentTypes()),
             ]),
             'phone' => new Assert\Required([
                 new Assert\NotBlank(),
@@ -117,7 +115,7 @@ class Mobile implements QueryInterface
                 new Assert\NotBlank(),
                 new Code()
             ]),
-            $this->type => new Assert\Collection(['fields' => [], 'allowExtraFields' => true]),
+            $this->type => new Assert\Collection(fields: [], allowExtraFields: true),
             'language' => new Assert\Optional(),
             'message' => new Assert\Optional(),
             'timestamp' => new Assert\Optional(),

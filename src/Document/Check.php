@@ -82,9 +82,7 @@ class Check implements QueryInterface
         return new Assert\Collection([
             'type'  => new Assert\Required([
                 new Assert\NotBlank(),
-                new Assert\Choice([
-                    'choices' => DocumentTypeProvider::getPrimaryDocumentTypes()
-                ])
+                new Assert\Choice(choices: DocumentTypeProvider::getPrimaryDocumentTypes())
             ]),
             'file' => new Assert\Collection([
                 'name' => new Assert\Required([
@@ -98,9 +96,7 @@ class Check implements QueryInterface
                 ]),
             ]),
             'validation_policy' => new Assert\Optional([
-                new Assert\Choice([
-                    'choices' => $this->getValidationPolicies()
-                ])
+                new Assert\Choice(choices: $this->getValidationPolicies())
             ]),
         ]);
     }

@@ -9,7 +9,7 @@
     "require": {
         "php"               : "^8.2",
         "guzzlehttp/guzzle" : "~7.0",
-        "symfony/validator" : "~7.0"
+        "symfony/validator" : "~7.0 || ~8.0"
     },
     "require-dev": {
         "psr/log"           : "~1.0",

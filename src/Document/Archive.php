@@ -82,9 +82,7 @@ class Archive implements QueryInterface
         return new Assert\Collection([
             'type'  => new Assert\Required([
                 new Assert\NotBlank(),
-                new Assert\Choice([
-                    'choices' => DocumentTypeProvider::getPrimaryDocumentTypes()
-                ])
+                new Assert\Choice(choices: DocumentTypeProvider::getPrimaryDocumentTypes())
             ]),
             'file' => new Assert\Collection([
                 'name' => new Assert\Required([
@@ -98,7 +96,7 @@ class Archive implements QueryInterface
                 ]),
             ]),
             'signatures' => new Assert\Required([
-                new Assert\Count(['min' => 1]),
+                new Assert\Count(min: 1),
                 new Assert\All([
                     new Assert\Collection([
                         'id' => new Assert\Required([

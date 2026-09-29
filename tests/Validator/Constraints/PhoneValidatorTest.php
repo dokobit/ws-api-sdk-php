@@ -4,17 +4,12 @@ namespace Dokobit\Tests\Validator\Constraints;
 
 use Dokobit\Validator\Constraints\Phone;
 use Dokobit\Validator\Constraints\PhoneValidator;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
-use Symfony\Component\Validator\Validation;
 
 class PhoneValidatorTest extends ConstraintValidatorTestCase
 {
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
-    protected function createValidator()
+    protected function createValidator(): ConstraintValidatorInterface
     {
         return new PhoneValidator(false);
     }
@@ -81,6 +76,7 @@ class PhoneValidatorTest extends ConstraintValidatorTestCase
 
         $this->buildViolation('myMessage')
             ->setParameter('{{ value }}', '"'.$phone.'"')
+            ->setParameter('{{ pattern }}', $constraint->pattern)
             ->setCode(defined('Dokobit\Validator\Constraints\Phone::REGEX_FAILED_ERROR')?Phone::REGEX_FAILED_ERROR:null)
             ->assertRaised();
     }
