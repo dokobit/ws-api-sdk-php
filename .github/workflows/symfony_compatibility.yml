@@ -27,8 +27,13 @@ jobs:
                     - php: '8.4'
                       symfony: '8.1'
         steps:
+            - name: Checkout SDK
+              uses: actions/checkout@v4
+              with:
+                  path: sdk
+
             - name: Branch name
-              run: echo $GITHUB_HEAD_REF
+              run: echo "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
 
             - name: Setup PHP ${{ matrix.php }}
               uses: shivammathur/setup-php@v2
@@ -42,10 +47,14 @@ jobs:
               run: composer --version
 
             - name: Install Symfony ${{matrix.symfony}}
-              run: composer create-project symfony/skeleton:"${{matrix.symfony}}.*" .
+              run: composer create-project symfony/skeleton:"${{matrix.symfony}}.*" app
 
             - name: Check Symfony version
               run: bin/console about
+              working-directory: app
 
             - name: Install sdk
-              run: composer require --prefer-dist --no-progress dokobit/ws-api-sdk-php:dev-$GITHUB_HEAD_REF
+              working-directory: app
+              run: |
+                  composer config repositories.sdk path ../sdk
+                  composer require --prefer-dist --no-progress 'dokobit/ws-api-sdk-php:@dev'
