@@ -9,6 +9,7 @@ use Dokobit\Exception\UnexpectedError;
 use Dokobit\Exception\UnexpectedResponse;
 use GuzzleHttp\Exception\ClientException;
 use Dokobit\Http\GuzzleClientAdapter;
+use GuzzleHttp\Psr7\Utils;
 
 class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
 {
@@ -66,7 +67,7 @@ class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
         $response
             ->expects($this->once())
             ->method('getBody')
-            ->willReturn('response body')
+            ->willReturn(Utils::streamFor('response body'))
         ;
 
         $this->client
@@ -99,7 +100,7 @@ class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
         $response
             ->expects($this->once())
             ->method('getBody')
-            ->willReturn('response body')
+            ->willReturn(Utils::streamFor('response body'))
         ;
 
         $this->client
@@ -132,7 +133,7 @@ class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
         $response
             ->expects($this->once())
             ->method('getBody')
-            ->willReturn('response body')
+            ->willReturn(Utils::streamFor('response body'))
         ;
 
         $this->client
@@ -165,7 +166,7 @@ class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
         $response
             ->expects($this->once())
             ->method('getBody')
-            ->willReturn('response body')
+            ->willReturn(Utils::streamFor('response body'))
         ;
 
         $this->client
@@ -198,7 +199,7 @@ class GuzzleClientAdapterTest extends \PHPUnit\Framework\TestCase
         $response
             ->expects($this->once())
             ->method('getBody')
-            ->willReturn('response body')
+            ->willReturn(Utils::streamFor('response body'))
         ;
 
         $this->client

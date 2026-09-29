@@ -25,11 +25,21 @@ class Code extends Regex
      */
     public function __construct($options = null)
     {
-        $options['pattern'] = sprintf(
+        $options = $options ?? [];
+        $pattern = sprintf(
             self::VALIDATION_PATTERN,
             $this->buildPattern($this->getCountryPatterns())
         );
-        parent::__construct($options);
+
+        parent::__construct(
+            pattern: $pattern,
+            message: $options['message'] ?? $this->message,
+            htmlPattern: $options['htmlPattern'] ?? null,
+            match: $options['match'] ?? null,
+            normalizer: $options['normalizer'] ?? null,
+            groups: $options['groups'] ?? null,
+            payload: $options['payload'] ?? null,
+        );
     }
 
     /**

@@ -18,7 +18,7 @@ class Request extends \RuntimeException
     public function __construct(
         $message,
         $code,
-        \Exception $previousException = null,
+        ?\Exception $previousException = null,
         $responseData = null
     ) {
         $message .= ' Response: '.var_export($responseData, true);
